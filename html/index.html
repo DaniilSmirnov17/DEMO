@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Регистрация</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1 class="text-center mb-3">Регистрация</h1>
+            <form action="#" method="post">
+                <div class="mb-3">
+                    <label for="login" class="form-label">Логин</label>
+                    <input type="text" class="form-control" id="login" name="login" minlength="6" pattern="[A-Za-z0-9]+" required>
+                    <div class="form-text">Минимум 6 символов, только латинские буквы и цифры.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Пароль</label>
+                    <input type="password" class="form-control" id="password" name="password" minlength="8" required>
+                    <div class="form-text">Минимум 8 символов.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="fullname" class="form-label">ФИО</label>
+                    <input type="text" class="form-control" id="fullname" name="fullname" required>
+                </div>
+                <div class="mb-3">
+                    <label for="tel" class="form-label">Номер телефона</label>
+                    <input type="tel" class="form-control" id="tel" name="tel" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Почта</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Зарегистрироваться</button>
+                <p class="text-center mt-2"><a class="link-opacity-75-hover" href="auth.html">Уже есть аккаунт? Авторизация</a></p>
+            </form>
+            </div>
+    </div>
+</div>
+
+<script src="../js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

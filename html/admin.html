@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Панель администратора</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Панель администратора</h1>
+    <div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title">Фильтр заявок</h5>
+
+        <form action="#" method="get">
+            <div class="row g-2">
+                <div class="col-md-4">
+                    <label for="status" class="form-label">Статус</label>
+                    <select class="form-select" id="status" name="status">
+                        <option value="">Все статусы</option>
+                        <option value="new">Новая</option>
+                        <option value="assigned">Банкет назначен</option>
+                        <option value="completed">Банкет завершен</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="room" class="form-label">Помещение</label>
+                    <select class="form-select" id="room" name="room">
+                        <option value="">Все помещения</option>
+                        <option value="hall">Зал</option>
+                        <option value="restaurant">Ресторан</option>
+                        <option value="summer">Летняя веранда</option>
+                        <option value="closed">Закрытая веранда</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="date" class="form-label">Дата</label>
+                    <input type="date" class="form-control" id="date" name="date">
+                </div>
+            </div>
+
+            <div class="mt-3">
+                <button type="submit" class="btn btn-primary">Применить</button>
+                <button type="reset" class="btn btn-secondary">Сбросить</button>
+            </div>
+        </form>
+    </div>
+</div>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>№</th>
+                    <th>Пользователь</th>
+                    <th>Помещение</th>
+                    <th>Дата</th>
+                    <th>Оплата</th>
+                    <th>Статус</th>
+                    <th>Действие</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Иванов Иван</td>
+                    <td>Ресторан</td>
+                    <td>25.10.2026</td>
+                    <td>Картой</td>
+                    <td>
+                        <select class="form-select">
+                            <option selected>Новая</option>
+                            <option>Банкет назначен</option>
+                            <option>Банкет завершен</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary">Сохранить</button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>2</td>
+                    <td>Петров Петр</td>
+                    <td>Зал</td>
+                    <td>01.11.2026</td>
+                    <td>Наличными</td>
+                    <td>
+                        <select class="form-select">
+                            <option>Новая</option>
+                            <option selected>Банкет назначен</option>
+                            <option>Банкет завершен</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary">Сохранить</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="../js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

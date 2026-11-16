@@ -1,0 +1,40 @@
+@font-face{
+    font-family: 'h';
+    src: url(../fonts/PT_Sans/PTSans-Bold.ttf) format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face{
+    font-family: 'text';
+    src: url(../fonts/PT_Sans/PTSans-Regular.ttf) format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+body {
+    font-family: 'text', sans-serif !important;
+    background-color: #f8f9fa;
+    font-size: 16px;
+}
+.bg-primary{
+    background-color: #0d47a1 !important;
+}
+.btn-primary{
+    background-color: #007bff   !important;
+}
+h1{
+    font-family: 'h', sans-serif !important;
+    font-size: 36px;
+}
+h2{
+    font-family: 'h', sans-serif !important;
+    font-size: 24px;
+}
+h3{
+    font-family: 'h', sans-serif !important;
+    font-size: 18px;
+}
+
+.table tbody tr { transition: background-color 0.2s ease; }
+        .table tbody tr:hover { background-color: #f1f3f5; }
+        .btn { transition: transform 0.1s ease, box-shadow 0.1s ease; }
+        .btn:hover { transform: translateY(-1px); box-shadow: 0 2px 4px rgba(0,0,0,0.1); }

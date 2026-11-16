@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Оформление заявки</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="d-flex flex-column min-vh-100">
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Навбар</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключатель навигации">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" href="profile.html">Профиль</a>
+        </li>
+      </ul>
+        <h4 class="mx-3">Привет,Юзер</h4>
+        <button class="btn btn-outline-success" type="submit">Выход</button>
+    </div>
+  </div>
+</nav>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <h1 class="text-center mb-4">Оформление заявки</h1>
+
+            <form action="#" method="post">
+
+                <div class="mb-3">
+                    <label for="room" class="form-label">Помещение</label>
+                    <select class="form-select" id="room" name="room" required>
+                        <option value="">Выберите помещение</option>
+                        <option value="Зал">Зал</option>
+                        <option value="Ресторан">Ресторан</option>
+                        <option value="Летняя веранда">Летняя веранда</option>
+                        <option value="Закрытая веранда">Закрытая веранда</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="date" class="form-label">Дата начала банкета</label>
+                    <input type="date" class="form-control" id="date" name="date" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="payment" class="form-label">Способ оплаты</label>
+                    <select class="form-select" id="payment" name="payment" required>
+                        <option value="">Выберите способ оплаты</option>
+                        <option value="Наличными">Наличными</option>
+                        <option value="Картой">Картой</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">
+                    Отправить заявку
+                </button>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+<footer class="bg-light text-center py-3 mt-auto">
+    <p class="mb-0">2026 Банкетам.Нет</p>
+</footer>
+<script src="../js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
