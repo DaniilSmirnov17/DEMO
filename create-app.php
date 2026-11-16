@@ -1,29 +1,34 @@
 <?php
+// серверная часть 
+// подключение файла подключения к БД
 require_once 'config.php';
-
+// проверка авторизации
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit;
 }
-
+// запись ошибок 
 $error   = '';
 $success = '';
 
+// обработка формы 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $room    = trim($_POST['room']    ?? '');
     $date    = $_POST['date']    ?? '';
     $payment = $_POST['payment'] ?? '';
     $userId  = $_SESSION['user_id'];
-
+    // валидация 
     if ($room === '' || $date === '' || $payment === '') {
         $error = 'Заполните все поля';
     } else {
+        // добавление в бд заявки 
         $stmt = $conn->prepare("INSERT INTO requests (user_id, room, date, payment) VALUES (?, ?, ?, ?)");
         $stmt->execute([$userId, $room, $date, $payment]);
         $success = 'Заявка успешно отправлена';
     }
 }
 ?>
+<!-- вывод в браузер  -->
 <!doctype html>
 <html lang="ru">
 <head>
@@ -64,11 +69,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <section class="card shadow-sm">
                 <div class="card-body">
                     <h1 class="text-center mb-4">Оформление заявки</h1>
-
+                    <!-- уведомление об ошибках -->
                     <?php if (!empty($error)): ?>
                         <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
                     <?php endif; ?>
-
+                    <!-- уведомление о подтверждении  -->
                     <?php if (!empty($success)): ?>
                         <div class="alert alert-success"><?= htmlspecialchars($success) ?></div>
                     <?php endif; ?>

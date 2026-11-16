@@ -1,24 +1,24 @@
 <?php
-
+// серверная часть 
+// подключение файла подключения к БД
 require_once 'config.php';
-
+// запись массива ошибок 
 $error = '';
-
+// оюработка формы 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['login'] ?? '');
     $password = $_POST['password'] ?? '';
-
+    // проверка на админа 
     if ($username === 'Conf2027' && $password === 'Demo77') {
         $_SESSION['username'] = $username;
         header('Location: admin.php');
         exit;
     }
-
-
+    
     $stmt = $conn->prepare("SELECT id, username, password_hash FROM users WHERE username = ?");
     $stmt->execute([$username]);
     $user = $stmt->fetch();
-
+    // проверка существования
     if ($user && password_verify($password, $user['password_hash'])) {
         $_SESSION['user_id']  = $user['id'];
         $_SESSION['username'] = $user['username'];
@@ -29,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $error = 'Неверный логин или пароль';
 }
 ?>
+<!-- вывод в браузер  -->
 <!doctype html>
 <html lang="ru">
 <head>
@@ -48,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <section class="card shadow-sm">
                 <div class="card-body">
                     <h1 class="text-center mb-3">Авторизация</h1>
-
+                    <!-- вывод ошибок  -->
                     <?php if (!empty($error)): ?>
                         <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
                     <?php endif; ?>

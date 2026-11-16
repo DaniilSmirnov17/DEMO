@@ -1,22 +1,24 @@
 <?php
-
+// серверная часть 
+// подключение файла подключения к БД
 require_once 'config.php';
-
+// проверка на авторизацию 
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit;
 }
-
+// запись айди пользователя для дальнейшей работы 
 $userId = (int) $_SESSION['user_id'];
-
+// обработка формы 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $requestId = (int) ($_POST['request_id'] ?? 0);
     $review    = trim($_POST['review'] ?? '');
-
+    // обновление комментария 
     if ($requestId > 0 && $review !== '') {
         $stmt = $conn->prepare("UPDATE requests SET review = ? WHERE id = ? AND user_id = ? AND status = 'Завершено'");
         $stmt->execute([$review, $requestId, $userId]);
     }
+    // редирект для обновления данных 
     header('Location: application.php');
     exit;
 }
@@ -26,6 +28,7 @@ $stmt->execute([$userId]);
 $requests = $stmt->fetchAll();
 
 ?>
+<!-- вывод в браузер  -->
 <!doctype html>
 <html lang="ru">
 <head>
@@ -80,6 +83,7 @@ $requests = $stmt->fetchAll();
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- вывод данных  -->
                 <?php if (empty($requests)): ?>
                     <tr>
                         <td colspan="6" class="text-center text-muted">Заявок пока нет</td>

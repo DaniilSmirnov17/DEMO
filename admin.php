@@ -1,10 +1,12 @@
 <?php
+// серверная часть 
 require_once 'config.php';
-
+//проверка на постороннего пользователя
 if (($_SESSION['username'] ?? '') !== 'Conf2027') {
     header('Location: login.php');
     exit;
 }
+// работа с данными из формы
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['request_id'])) {
     $requestId = (int) $_POST['request_id'];
 
@@ -25,9 +27,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['request_id'])) {
             }
         }
     }
+    // редирект для обновления данных 
     header('Location: admin.php' . (isset($_GET['status']) ? '?status=' . urlencode($_GET['status']) : ''));
     exit;
 }
+// вывод данных из бд с условием из GET-запроса
 $status = $_GET['status'] ?? '';
 $sql    = "SELECT r.id, r.room, r.date, r.payment, r.status, u.username FROM requests r JOIN users u ON u.id = r.user_id";
 $params = [];
@@ -40,6 +44,7 @@ $stmt = $conn->prepare($sql);
 $stmt->execute($params);
 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+<!-- вывод в браузер  -->
 <!doctype html>
 <html lang="ru">
 <head>
@@ -112,6 +117,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </tr>
             </thead>
             <tbody>
+            <!-- вывод данных -->
                 <?php if (empty($rows)): ?>
                     <tr>
                         <td colspan="7" class="text-center text-muted py-3">Ничего не найдено</td>
@@ -128,7 +134,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <td>
                                 <form action="" method="post" class="d-flex gap-2">
                                     <input type="hidden" name="request_id" value="<?= (int) $row['id'] ?>">
-                                    
+                                    <!-- смена сатуса  -->
                                     <select class="form-select form-select-sm" name="status" data-testid="admin-status" style="min-width: 120px;">
                                         <option value="Новая" <?= $row['status'] === 'Новая' ? 'selected' : '' ?>>Новая</option>
                                         <option value="Мероприятие назначено" <?= $row['status'] === 'Мероприятие назначено' ? 'selected' : '' ?>>Мероприятие назначено</option>

@@ -1,14 +1,18 @@
 <?php
+// серверная часть 
+// подключение файла подключения к БД
 require_once 'config.php';
+// запись ошибок 
 $error = '';
 
+// обработка формы 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['login']    ?? '');
     $password = $_POST['password'] ?? '';
     $fullname = trim($_POST['fullname'] ?? '');
     $phone    = trim($_POST['tel']      ?? '');
     $email    = trim($_POST['email']    ?? '');
-
+    // валидация формы 
     if (!$username || !$fullname || !$phone || !$email || !$password) {
         $error = 'Заполните все поля';
     } elseif (!preg_match('/^[A-Za-z0-9]{6,}$/', $username)) {
@@ -22,6 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif (strlen($password) < 8) {
         $error = 'Пароль должен быть не менее 8 символов';
     } else {
+        // добавление пользователя в бд 
         $stmt = $conn->prepare("SELECT id FROM users WHERE username = ?");
         $stmt->execute([$username]);
         if ($stmt->fetch()) {
@@ -36,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-
+<!-- вывод в бразуер  -->
 <!doctype html>
 <html lang="ru">
 <head>
@@ -56,6 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <section class="card shadow-sm">
                 <div class="card-body">
                     <h2 class="text-center mb-3">Регистрация</h2>
+                    <!-- вывод ошибок  -->
                     <?php if ($error): ?>
                         <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
                     <?php endif; ?>
